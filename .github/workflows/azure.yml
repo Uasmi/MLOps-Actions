@@ -9,7 +9,7 @@ env:
   ml-ct: cpu-cluster-1
   ml-scripts-path: scripts/
   ml-exp: mlOps-exp
-  ml-model-name: diabetes-model # Model name
+  ml-model-name: mlOps-model # Model name
   ml-aks-name: aks-prod # AKS cluster name
   ml-model-path: outputs/ridge_0.90.pkl 
 jobs:
