@@ -25,7 +25,6 @@ jobs:
     - name: install azmlcli
       run: az extension add -n azure-cli-ml
     - name: attach to workspace
-      working-directory: ${{env.ml-path}}
       run: az ml folder attach -w ${{env.ml-ws}} -g ${{env.ml-rg}}
     
 
