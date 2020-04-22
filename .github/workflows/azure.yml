@@ -33,5 +33,3 @@ jobs:
     - name: train model
       working-directory: ${{env.ml-scripts-path}}
       run: az ml run submit-script -c config/train --ct ${{env.ml-ct}} -e ${{env.ml-exp}} -t run.json
-
-
