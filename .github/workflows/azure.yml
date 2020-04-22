@@ -7,7 +7,7 @@ env:
   ml-ws: airs-workspace-ent
   ml-rg: azure-ml
   ml-ct: cpu-cluster-1
-  ml-path: models/diabetes
+  ml-path: models/test
   ml-exp: exp-test 
   ml-model-name: diabetes-model # Model name
   ml-aks-name: aks-prod # AKS cluster name
@@ -27,4 +27,5 @@ jobs:
     - name: attach to workspace
       working-directory: ${{env.ml-path}}
       run: az ml folder attach -w ${{env.ml-ws}} -g ${{env.ml-rg}}
+    
 
