@@ -7,8 +7,8 @@ env:
   ml-ws: airs-workspace-ent
   ml-rg: azure-ml
   ml-ct: cpu-cluster-1
-  ml-path: models/test
-  ml-exp: exp-test 
+  ml-scripts-path: scripts/
+  ml-exp: mlOps-exp
   ml-model-name: diabetes-model # Model name
   ml-aks-name: aks-prod # AKS cluster name
   ml-model-path: outputs/ridge_0.90.pkl 
@@ -25,6 +25,13 @@ jobs:
     - name: install azmlcli
       run: az extension add -n azure-cli-ml
     - name: attach to workspace
-      run: az ml folder attach -w ${{env.ml-ws}} -g ${{env.ml-rg}}
-    
+      working-directory: ${{env.ml-scripts-path}}
+      run: az ml folder attach -w myworkspace -g myresourcegroup
+    - name: create remote compute
+      working-directory: ${{env.ml-scripts-path}}
+      run: az ml computetarget create amlcompute -n ${{env.ml-ct}} --vm-size STANDARD_D2_V2 --max-nodes 4
+    - name: train model
+      working-directory: ${{env.ml-scripts-path}}
+      run: az ml run submit-script -c config/train --ct ${{env.ml-ct}} -e ${{env.ml-exp}} -t run.json
+
 
