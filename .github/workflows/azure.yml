@@ -27,3 +27,4 @@ jobs:
     - name: attach to workspace
       working-directory: ${{env.ml-path}}
       run: az ml folder attach -w ${{env.ml-ws}} -g ${{env.ml-rg}}
+
